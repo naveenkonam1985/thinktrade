@@ -1,0 +1,2 @@
+# thinktrade
+About Trading
