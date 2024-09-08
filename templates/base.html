@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ThinkTrade</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<header><h1>Calculating Portfolio Beta</h1></header>
+<body>
+    <div class="flex-container">
+        <div class="container-left">
+            
+            <p>To trade a profitable portfolio, one generally wants to buy low
+                and sell high. To systematically follow through on this, we need
+                a forecast of future returns, a risk model, a trading cost model,
+                and a portfolio construction algorithm using all of the above.
+            </p>
+            <p>
+                Beta is a key metric used to identify an individual stock or portfolio’s 
+                level of volatility against the market standard. Those looking to minimize 
+                risk in their portfolio will want to pay close attention to their beta metric and keep it as close to the market benchmark as possible.
+            </p>
+            <p>
+
+            1.0 	The stock moves in line with the broader market
+            2.0 	The stock moves twice as much as the broader market
+            0.0 	The stock's moves don’t correlate with the broader market
+            -1.0 	The stock moves in the opposite direction of the broader market
+            </p>
+        </div>
+        <div class="container-right">
+            <div class="form">
+                <form method="post">
+                    <label for="Name">Name</label>
+                    <br>
+                    <input type="text" name="name"
+                        value="{{ request.form['name'] }}"></input>
+                    <br>
+                
+                    <label for="qty">Quantity</label>
+                    <br>
+                    <input name="quantity"
+                            value="{{ request.form['quantity'] }}"></input>
+                    <br>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+            <div class="data">
+                <p>List of Stocks</p>
+                <ol>1 and beta is</ol>
+                <ol>2 and beta is</ol>
+                <ol>3 and beta is</ol>
+            
+                <p>Entered Data</p>
+            
+                {% if length==0 %}
+                <p> No Data </p>
+                {% else %}
+                <p> {{messages}} </p>
+                {% endif %}
+            
+                <button type="submit">Get Beta</button>
+                <p>Your Portfolio Beta is:</p>
+                
+                {% if beta==0 %}
+                <p></p>
+                {% else %}
+                <p> {{beta}} </p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
