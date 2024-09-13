@@ -19,27 +19,45 @@
                 level of volatility against the market standard. Those looking to minimize 
                 risk in their portfolio will want to pay close attention to their beta metric and keep it as close to the market benchmark as possible.
             </p>
-            <p>
 
-            1.0 	The stock moves in line with the broader market
-            2.0 	The stock moves twice as much as the broader market
-            0.0 	The stock's moves don’t correlate with the broader market
-            -1.0 	The stock moves in the opposite direction of the broader market
-            </p>
+            <table>
+                <tr>
+                    <th>Beta Value</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>1.0</td>
+                    <td>The stock moves in line with the broader market</td>
+                </tr>
+                <tr>
+                    <td>2.0</td>
+                    <td>The stock moves twice as much as the broader market</td>
+                </tr>
+                <tr>
+                    <td>0.0</td>
+                    <td>The stock's moves don’t correlate with the broader market</td>
+                </tr>
+                <tr>
+                    <td>-1.0</td>
+                    <td>The stock moves in the opposite direction of the broader market</td>
+                </tr>
+            </table>
+
         </div>
         <div class="container-right">
             <div class="form">
                 <form method="post">
-                    <label for="Name">Name</label>
-                    <br>
+                    <label for="name">Name</label>
                     <input type="text" name="name"
                         value="{{ request.form['name'] }}"></input>
                     <br>
-                
                     <label for="qty">Quantity</label>
-                    <br>
                     <input name="quantity"
                             value="{{ request.form['quantity'] }}"></input>
+                    <br>
+                    <label for="price">Buy Price</label>
+                    <input name="price"
+                            value="{{ request.form['price'] }}"></input>
                     <br>
                     <button type="submit">Submit</button>
                 </form>
@@ -58,7 +76,6 @@
                 <p> {{messages}} </p>
                 {% endif %}
             
-                <button type="submit">Get Beta</button>
                 <p>Your Portfolio Beta is:</p>
                 
                 {% if beta==0 %}
