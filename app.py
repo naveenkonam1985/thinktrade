@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, url_for, flash, redirect
 import pandas as pd
 import yfinance as yf
-import riskfolio as rp
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'e6f469c376e0724c6cc76a694549c290b02ff4ba56f727c0'
@@ -72,54 +71,8 @@ def create():
             data['price']=price
             data['date']=date
             stocks.append(data)   
-            return redirect(url_for('portfolio'))     
-    
-    if len(stocks) > 1:
-        df = pd.DataFrame(stocks)
-        df_html = df.to_html(header=True, index=False)
-        
-        names=df['name'].tolist()
-
-        # Date range
-        start = '2020-01-01'
-        end = '2024-07-31'
-
-        # Tickers of assets
-        tickers = []
-        for sec in names:
-            sec = sec + ".ns"
-            tickers.append(sec)
-        tickers.sort()
-
-        # Downloading the data
-        data = yf.download(tickers, start = start, end = end)
-        data = data.loc[:,('Adj Close', slice(None))]
-        data.columns = tickers
-        assets = data.pct_change().dropna()
-
-        Y = assets
-
-        # Creating the Portfolio Object
-        port = rp.Portfolio(returns=Y)
-
-        # To display dataframes values in percentage format
-        pd.options.display.float_format = '{:.4%}'.format
-
-        # Choose the risk measure
-        rm = 'MV'  # Standard Deviation
-
-        # Estimate inputs of the model (historical estimates)
-        method_mu='hist' # Method to estimate expected returns based on historical data.
-        method_cov='hist' # Method to estimate covariance matrix based on historical data.
-
-        port.assets_stats(method_mu=method_mu, method_cov=method_cov)
-
-        # Estimate the portfolio that maximizes the risk adjusted return ratio
-        w = port.optimization(model='Classic', rm=rm, obj='Sharpe', rf=0.0, l=0, hist=True)
-        print(w)
-        return render_template('portfolio.html', stocks=stocks, tables = w)  
-    else:
-        return render_template('portfolio.html',stocks=stocks)
+            return redirect(url_for('portfolio'))      
+    return render_template('portfolio.html',stocks=stocks)
 
 @app.route('/contact', methods=["GET", "POST"])
 def portfolio():
