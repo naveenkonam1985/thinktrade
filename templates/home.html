@@ -1,0 +1,65 @@
+{% extends "basic.html" %}
+
+{% block content %}
+<div class="home_page">
+    <div class="description">
+        <div class="desc1">
+            <h3>Modern Portfolio Theory</h3>
+            <p>To trade a profitable portfolio, one generally wants to buy low
+            and sell high. To systematically follow through on this, we need
+            a forecast of future returns, a risk model, a trading cost model,
+            and a portfolio construction algorithm using all of the above.
+            </p>
+            <p>
+            Beta is a key metric used to identify an individual stock or portfolio’s 
+            level of volatility against the market standard. Those looking to minimize 
+            risk in their portfolio will want to pay close attention to their beta metric and keep it as close to the market benchmark as possible.
+            </p>
+
+            <table>
+                <tr>
+                    <th>Beta Value</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>1.0</td>
+                    <td>The stock moves in line with the broader market</td>
+                </tr>
+                <tr>
+                    <td>2.0</td>
+                    <td>The stock moves twice as much as the broader market</td>
+                </tr>
+                <tr>
+                    <td>0.0</td>
+                    <td>The stock's moves don’t correlate with the broader market</td>
+                </tr>
+                <tr>
+                    <td>-1.0</td>
+                    <td>The stock moves in the opposite direction of the broader market</td>
+                </tr>
+            </table>
+        </div>
+        <div class="desc2">
+            <h3>Constructing the Portfolio</h3>
+            <p>An efficient portfolio is one that provides
+                the greatest expected return for a given level of risk, or equivalently, the
+                lowest risk for a given expected return.</p>
+
+                <p>To construct an efficient portfolio, the investor must be able to quantify
+                    risk and provide the necessary inputs. There are three key inputs that are needed:
+                </p>
+                <p>
+                    <ul>
+                        <li>future expected return (or simply expected return)</li>
+                        <li>variance of asset returns</li>
+                        <li>correlation (or covariance) of asset returns</li>
+                    </ul>
+                </p>
+        </div>
+        <div class="desc3">
+            <h3>Evaluating Performance</h3>
+        </div>
+
+    </div>      
+</div>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "basic.html" %}
+
+{% block content %}
+<div class="form_page">
+    <div class="form">
+        <form method="post">
+            <label for="name">
+                <div class="flabel">Name</div></label>
+            <input type="text" name="name" value="{{ request.form['name'] }}"></input>
+            <br>
+
+            <label for="qty">
+                <div class="flabel">Quantity</div></label>
+            <input name="quantity" value="{{ request.form['quantity'] }}"></input>
+            <br>
+
+            <label for="price">
+                <div class="flabel">Buy Price</div></label>
+            <input name="price" value="{{ request.form['price'] }}"></input>
+            <br>
+
+            <label for="price">
+                <div class="flabel">Buy Date</div></label>
+            
+            <input type="date" name="date" value="{{ request.form['date'] }}"></input>
+            <br>
+            <p></p>
+            <div class="buttons">
+                <button type="submit">Submit</button>
+            </div>
+            
+        </form>
+    </div>
+    <div class="data">
+        <p>Entered Data</p>
+        <p>{{stocks}}</p>
+        
+        <p>{{tables|safe}}</p>
+
+        <p> The purpose of the analysis is to find portfolios which best meet the objectives of the investor</p>
+        <p> Portfolio Summary</p>
+        <p>Portfolio Weights</p>
+        <p>Sharpe Ratio</p>
+        <p>
+            Portfolio Performance over the period chart
+        </p>
+        <p>get Optimized weights and Quantities</p>
+        
+    </div>
+
+</div>
+{% endblock %}
