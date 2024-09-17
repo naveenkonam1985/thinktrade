@@ -51,7 +51,7 @@ def home():
     return render_template('home.html')
       
 @app.route('/portfolio', methods=["GET", "POST"])
-def create():
+def portfolio():
     data = {}
     if request.method == 'POST':
         name = request.form['name']
@@ -75,6 +75,6 @@ def create():
     return render_template('portfolio.html',stocks=stocks)
 
 @app.route('/contact', methods=["GET", "POST"])
-def portfolio():
+def contact():
     return render_template('contact.html')
 
