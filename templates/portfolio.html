@@ -3,6 +3,7 @@
 {% block content %}
 <div class="form_page">
     <div class="form">
+        <h3>Enter Assets Data</h3>   
         <form method="post">
             <label for="name">
                 <div class="flabel">Name</div></label>
@@ -32,20 +33,22 @@
         </form>
     </div>
     <div class="data">
-        <p>Entered Data</p>
-        <p>{{stocks}}</p>
-        
-        <p>{{tables|safe}}</p>
-
-        <p> The purpose of the analysis is to find portfolios which best meet the objectives of the investor</p>
-        <p> Portfolio Summary</p>
-        <p>Portfolio Weights</p>
-        <p>Sharpe Ratio</p>
-        <p>
-            Portfolio Performance over the period chart
-        </p>
-        <p>get Optimized weights and Quantities</p>
-        
+        <h3>Portfolio</h3>
+        <div class="summary">
+            <div class="tabledata">
+                <p>Asset Details</p>
+                {{tables|safe}}
+            </div>
+            <div class="ratios">
+                <p>Portfolio Summary</p>
+                <p>Portfolio Weights</p>
+                <p>Sharpe Ratio</p>
+                <p>
+                    Portfolio Performance over the period chart
+                </p>
+                <p>get Optimized weights and Quantities</p>
+            </div>
+        </div>
     </div>
 
 </div>
