@@ -1,11 +1,12 @@
 body {
     /*background-color: ghostwhite;
-    background-image: url("../images/image.jpg");*/
-    background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+    background-image: url("../images/image.jpg");
+    background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);*/
+    background-color: #51e2f5;
     display: flex;
     justify-content: center;
-    margin: 10px;
     height: 100%;
+    padding: 5px;
 
 }
 
@@ -30,11 +31,14 @@ h3 {
 	justify-content: center;
 	align-items: stretch;
 	align-content: stretch;
-    min-height: 93vh;
+    min-height: 95vh;
     flex: 1;
     flex-grow: 1;
     flex-shrink: 1;
     flex-basis: auto;
+    border-radius:0.5rem ;
+    background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+
 
 }
 
@@ -128,7 +132,7 @@ a :hover {
     flex-direction: column;
     margin: 5px;
     padding: 5px;
-    width: 10%;
+    width: 15%;
 
 
 }
@@ -140,7 +144,7 @@ form {
 
 .data {
     flex: column;
-    width: 90%;
+    width: 85%;
     margin: 5px;
     padding: 5px;
 
