@@ -125,22 +125,85 @@ a :hover {
 
 .form {
     display: flex;
-    border: solid blue;
+    flex-direction: column;
     margin: 5px;
     padding: 5px;
+    width: 10%;
 
+
+}
+
+form {
+    margin: 5px;
+    padding: 5px;
 }
 
 .data {
+    flex: column;
     width: 90%;
-    border: solid green;
     margin: 5px;
     padding: 5px;
+
+
 }
 
-.flabel {
+.flabel, input {
     font-weight: bold;
+    padding: 5px;
+    width: 80%;
 }
+
+.tabledata {
+    width: 40%;
+    padding: 5px;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+.ratios {
+    width: 60%;
+    padding: 5px;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+table {
+    table-layout:fixed;
+    border-collapse: collapse;
+    border: 2px solid black;
+    width: 100%;
+}
+
+
+thead th:nth-child(1) {
+    width: 25%;
+  }
+  
+  thead th:nth-child(2) {
+    width: 10%;
+  }
+  
+  thead th:nth-child(3) {
+    width: 10%;
+  }
+  
+  thead th:nth-child(4) {
+    width: 25%;
+  }
+  
+  th
+  {
+    padding:5px;
+    text-align: center;
+  }
+  td {
+    padding: 5px;
+  }
+
+.summary {
+    display: flex;
+    flex-direction: row;
+}
+
 
 .about_page {
     margin: 5px;
