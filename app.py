@@ -9,6 +9,7 @@ messages = {}
 stocks = list()
 
 
+
 @app.route("/old", methods=("GET", "POST"))
 def main():
     if request.method == "POST":
@@ -57,6 +58,7 @@ def home():
 @app.route("/portfolio", methods=["GET", "POST"])
 def portfolio():
     data = {}
+
     if request.method == "POST":
         name = request.form["name"]
         quantity = request.form["quantity"]
@@ -75,8 +77,12 @@ def portfolio():
             data["price"] = price
             data["date"] = date
             stocks.append(data)
+            leng = len(stocks)
+            print(leng)
             return redirect(url_for("portfolio"))
-    return render_template("portfolio.html", stocks=stocks)
+    
+    df = pd.DataFrame(stocks)
+    return render_template("portfolio.html", tables=df.to_html(index=False))
 
 
 @app.route("/about", methods=["GET", "POST"])
