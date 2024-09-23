@@ -10,6 +10,14 @@ body {
 }
 
 a {text-decoration: none; }
+p {
+    text-align: justify;
+    text-justify:inter-word;
+}
+h3 {
+    text-align: center;
+}
+
 
 .main {
     display: flex;
@@ -32,6 +40,7 @@ a {text-decoration: none; }
 
 .layer1 {
     display: flex;
+    flex-direction: row;
     justify-content:space-between;
     flex-basis: 10px;
     flex: 1;
@@ -99,27 +108,12 @@ a :hover {
     padding: 10px;
 }
 
-.desc1 > p {
+.desc1 > p, .desc2 > p, .desc3 > p {
     font-size: large;
     font-family: "EB Garamond", serif;
     font-optical-sizing: auto;
     font-style: normal
 }
-
-.desc2 > p {
-    font-size: large;
-    font-family: "EB Garamond", serif;
-    font-optical-sizing: auto;
-    font-style: normal
-}
-
-.desc3 > p {
-    font-size: large;
-    font-family: "EB Garamond", serif;
-    font-optical-sizing: auto;
-    font-style: normal
-}
-
 
 .form_page  {
     display: flex;
@@ -148,10 +142,14 @@ a :hover {
     font-weight: bold;
 }
 
-.contact_page {
+.about_page {
     margin: 5px;
     padding: 5px;
+    display: flex;
+    flex-direction: column;
+
 }
+
 
 
 .layer3 {
@@ -163,7 +161,6 @@ a :hover {
     margin: 5px;
     height: 5%;
     border-radius: 1rem;
-
 }
 
 .developer {
