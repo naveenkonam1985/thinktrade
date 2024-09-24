@@ -94,7 +94,7 @@ def portfolio():
         pass
     else:
         df.qty = df.qty.astype("int32")
-        df.price = df.price.astype("int32")
+        df.price = df.price.astype("float64")
         stocks_list = df['name'].tolist()
         df["value"] = df["qty"] * df["price"]
         total_value = df["value"].sum()
