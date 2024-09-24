@@ -1,13 +1,14 @@
 from flask import Flask, render_template, request, url_for, flash, redirect
 import pandas as pd
 import yfinance as yf
+import matplotlib.pyplot as plt
+import datetime
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "e6f469c376e0724c6cc76a694549c290b02ff4ba56f727c0"
 
 messages = {}
 stocks = list()
-
 
 
 @app.route("/old", methods=("GET", "POST"))
@@ -82,7 +83,33 @@ def portfolio():
             return redirect(url_for("portfolio"))
     
     df = pd.DataFrame(stocks)
-    return render_template("portfolio.html", tables=df.to_html(index=False))
+    
+    
+    #Taking the stocks list from total data
+    stocks_list = []
+    total_value=0
+    weights = {}
+
+    if df.empty:
+        pass
+    else:
+        df.qty = df.qty.astype("int32")
+        df.price = df.price.astype("int32")
+        stocks_list = df['name'].tolist()
+        df["value"] = df["qty"] * df["price"]
+        total_value = df["value"].sum()
+        
+    num_of_stocks = len(stocks_list)
+    
+    if num_of_stocks>0:
+        for st in stocks_list:
+            weights[st] = (df.set_index('name').loc[st,"price"] * df.set_index('name').loc[st,"qty"])/total_value
+
+    
+    return render_template("portfolio.html", tables=df.to_html(index=False), \
+                            num_of_stocks=num_of_stocks, \
+                            total_value=total_value, \
+                            weights = weights)
 
 
 @app.route("/about", methods=["GET", "POST"])
