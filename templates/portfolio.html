@@ -33,15 +33,29 @@
         </form>
     </div>
     <div class="data">
-        <h3>Portfolio</h3>
+        <h3>Portfolio Summary</h3>
         <div class="summary">
             <div class="tabledata">
                 <p>Asset Details</p>
                 {{tables|safe}}
+
             </div>
             <div class="ratios">
-                <p>Portfolio Summary</p>
+                <p>Number of stocks</p>
+                {% if num_of_stocks > 0 %}
+                <p>{{num_of_stocks}}</p>
+                {% else %}
+                <p></p>
+                {% endif %} 
+                
+                <p>Total Value</p>
+                {% if total_value > 0 %}
+                <p>{{total_value}}</p>
+                {% else %}
+                <p></p>
+                {% endif %}
                 <p>Portfolio Weights</p>
+                {{weights}}
                 <p>Sharpe Ratio</p>
                 <p>
                     Portfolio Performance over the period chart
