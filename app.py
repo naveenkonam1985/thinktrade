@@ -103,7 +103,8 @@ def portfolio():
     
     if num_of_stocks>0:
         for st in stocks_list:
-            weights[st] = (df.set_index('name').loc[st,"price"] * df.set_index('name').loc[st,"qty"])/total_value
+            weights[st] = round(float((df.set_index('name').loc[st,"price"] * \
+                 df.set_index('name').loc[st,"qty"])/total_value),2)
 
     
     return render_template("portfolio.html", tables=df.to_html(index=False), \
