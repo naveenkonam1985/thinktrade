@@ -48,14 +48,15 @@
                 <p></p>
                 {% endif %} 
                 
-                <p>Total Value</p>
+                <p>Invested Value</p>
                 {% if total_value > 0 %}
                 <p>{{total_value}}</p>
                 {% else %}
                 <p></p>
                 {% endif %}
-                <p>Portfolio Weights</p>
+                <p>Invested Weights</p>
                 {{weights}}
+                <p>dates are {{empty}}</p>
                 <p>Sharpe Ratio</p>
                 <p>
                     Portfolio Performance over the period chart
