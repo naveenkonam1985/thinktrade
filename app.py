@@ -9,6 +9,13 @@ app.config["SECRET_KEY"] = "e6f469c376e0724c6cc76a694549c290b02ff4ba56f727c0"
 
 messages = {}
 stocks = list()
+fixed_returns = 0.075
+
+def latest_price(stock_name):
+    name = stock_name + ".ns"
+    ticker = yf.Ticker(name)
+    price = ticker.info['currentPrice']
+    return price
 
 
 @app.route("/old", methods=("GET", "POST"))
@@ -89,6 +96,7 @@ def portfolio():
     stocks_list = []
     total_value=0
     weights = {}
+    empty=False
 
     if df.empty:
         pass
@@ -98,6 +106,7 @@ def portfolio():
         stocks_list = df['name'].tolist()
         df["value"] = df["qty"] * df["price"]
         total_value = df["value"].sum()
+        df['latestprice'] = df['name'].apply(latest_price)
         
     num_of_stocks = len(stocks_list)
     
@@ -110,7 +119,7 @@ def portfolio():
     return render_template("portfolio.html", tables=df.to_html(index=False), \
                             num_of_stocks=num_of_stocks, \
                             total_value=total_value, \
-                            weights = weights)
+                            weights = weights, empty=empty)
 
 
 @app.route("/about", methods=["GET", "POST"])
