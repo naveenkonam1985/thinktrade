@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, url_for, flash, redirect
 import pandas as pd
+import numpy as np
 import yfinance as yf
 import matplotlib.pyplot as plt
 import datetime
@@ -96,7 +97,7 @@ def portfolio():
     stocks_list = []
     total_value=0
     weights = {}
-    empty=False
+    empty=True
 
     if df.empty:
         pass
@@ -107,19 +108,46 @@ def portfolio():
         df["value"] = df["qty"] * df["price"]
         total_value = df["value"].sum()
         df['latestprice'] = df['name'].apply(latest_price)
+
+        df['date'].replace('',datetime.datetime.now().date(),inplace=True)
         
     num_of_stocks = len(stocks_list)
+
     
     if num_of_stocks>0:
         for st in stocks_list:
             weights[st] = round(float((df.set_index('name').loc[st,"price"] * \
                  df.set_index('name').loc[st,"qty"])/total_value),2)
 
+    #print(list(weights.keys()))
+    #print(list(weights.values()))
+
+    assets = [i + ".ns" for i in list(weights.keys())]
+    print(assets)
+
+    sharpe_ratio = 0
+    weights_list = list(weights.values())
+    weights_array = np.array(weights_list)
+
+    if len(weights_list)>1:
+        stock_data = yf.download(assets, start="2024-01-01",progress=False)
+        final_data = stock_data['Adj Close'].reset_index()
+        returns = final_data.set_index('Date').pct_change().dropna()
+
+        np.random.seed(101)
+        
+        port_returns = np.sum(returns.mean()*252*weights_array)
+        #print(port_returns)
+        port_vol = np.sqrt(np.dot(weights_array.T,np.dot(returns.cov()*252,weights_array)))
+        #print(port_vol)
+        sharpe_ratio = round((port_returns-0.075)/port_vol,2)
+        #print(sharpe_ratio)
     
     return render_template("portfolio.html", tables=df.to_html(index=False), \
                             num_of_stocks=num_of_stocks, \
                             total_value=total_value, \
-                            weights = weights, empty=empty)
+                            weights = weights, empty=empty, \
+                            sharpe_ratio=sharpe_ratio)
 
 
 @app.route("/about", methods=["GET", "POST"])
