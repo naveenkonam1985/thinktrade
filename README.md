@@ -6,7 +6,7 @@ thinktrade is a project for understanding stock portfolio characteristics of NSE
 It is still in development stage.
 
 ## Tools
-yfinance
-flask
-pandas
-numpy
+- yfinance
+- flask
+- pandas
+- numpy
